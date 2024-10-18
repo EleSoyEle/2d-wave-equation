@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
+from matplotlib.animation import FuncAnimation,FFMpegWriter,writers
 from utils import calc_cnm,calc_sin_cos,calc_cos_t
 
 #Numero de iteraciones maximas en las suams
@@ -11,14 +11,14 @@ l1 = 10
 l2 = 10
 v = 50
 #Definimos las iteraciones totales de la simulacion
-epochs = 1000
+epochs = 200
 
 t0 = 0
 t1 = 1
 
 
 def f1(x,y):
-    return 10*np.exp(-((x-5)**2+(y-5)**2)/0.1)
+    return 100*np.exp((-(x-2)**2-(y-2)**2)/0.1)
 
 res = 200
 x0 = np.linspace(0,l1,res)
@@ -50,7 +50,16 @@ ax = fig.add_subplot()
 def animate(i):
     print(i)
     ax.clear()
-    ax.pcolormesh(X,Y,frames[i],vmin=np.min(frames),vmax=np.max(frames),cmap='PuBu_r')
+    ax.pcolormesh(X,Y,frames[i],vmin=np.min(frames),vmax=np.max(frames),cmap='viridis')
     ax.axis("off")
 ani = FuncAnimation(fig,animate,epochs,interval=0.1)
-plt.show()    
+plt.show()
+'''
+ffmpeg_writer = writers['ffmpeg']
+
+# Ajustes de calidad del video
+writer = ffmpeg_writer(fps=64, codec='mpeg4', bitrate=5000)
+
+# Guardar la animación como archivo MP4
+ani.save("video.mp4", writer=writer,dpi=350)
+'''
