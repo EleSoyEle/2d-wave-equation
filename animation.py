@@ -9,16 +9,17 @@ m = 10
 #Definimos el contorno
 l1 = 10
 l2 = 10
-v = 50
+v = 10
 #Definimos las iteraciones totales de la simulacion
-epochs = 200
+epochs = 100
 
 t0 = 0
-t1 = 1
+t1 = 2
 
 
 def f1(x,y):
-    return 100*np.exp((-(x-2)**2-(y-2)**2)/0.1)
+    return x*(l1-x)*y*(l2-y)*(np.exp(-(x)**2-(y)**2))
+
 
 res = 200
 x0 = np.linspace(0,l1,res)
@@ -53,13 +54,12 @@ def animate(i):
     ax.pcolormesh(X,Y,frames[i],vmin=np.min(frames),vmax=np.max(frames),cmap='viridis')
     ax.axis("off")
 ani = FuncAnimation(fig,animate,epochs,interval=0.1)
-plt.show()
-'''
+#plt.show()
+
 ffmpeg_writer = writers['ffmpeg']
 
 # Ajustes de calidad del video
-writer = ffmpeg_writer(fps=64, codec='mpeg4', bitrate=5000)
+writer = ffmpeg_writer(fps=32, codec='mpeg4', bitrate=5000)
 
 # Guardar la animación como archivo MP4
-ani.save("video.mp4", writer=writer,dpi=350)
-'''
+ani.save("video.gif", writer=writer,dpi=350)
