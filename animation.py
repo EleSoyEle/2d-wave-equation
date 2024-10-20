@@ -18,7 +18,7 @@ t1 = 2
 
 
 def f1(x,y):
-    return x*(l1-x)*y*(l2-y)*(np.exp(-(x)**2-(y)**2))
+    return x*(l1-x)*y*(l2-y)*(np.exp(-(x-5)**2-(y-5)**2))
 
 
 res = 200
@@ -54,12 +54,12 @@ def animate(i):
     ax.pcolormesh(X,Y,frames[i],vmin=np.min(frames),vmax=np.max(frames),cmap='viridis')
     ax.axis("off")
 ani = FuncAnimation(fig,animate,epochs,interval=0.1)
-plt.show()
+#plt.show()
 
-#ffmpeg_writer = writers['ffmpeg']
+ffmpeg_writer = writers['ffmpeg']
 
 # Ajustes de calidad del video
-#writer = ffmpeg_writer(fps=32, codec='mpeg4', bitrate=5000)
+writer = ffmpeg_writer(fps=32, codec='mpeg4', bitrate=5000)
 
 # Guardar la animación como archivo GIF
-#ani.save("video.gif", writer=writer,dpi=350)
+ani.save("video.gif", writer=writer,dpi=100)

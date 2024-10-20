@@ -45,8 +45,8 @@ python3 animation.py
 $$ f(x,y) = xy(L_1-x)(L_2-y)$$
 ![Simulación de onda 2D](video1.gif)
 
-$$ f(x,y) = xy$$
+$$ f(x,y) = cos(x)$$
 ![Simulación de onda 2D](video2.gif)
 
-$$ f(x,y) = e^{-((x-2)^2+(y-5)^2)}-e^{-((x-7)^2+(y-5)^2)}$$
+$$ f(x,y) = e^{-((x-2)^2+(y-2)^2)}-e^{-((x-7)^2+(y-7)^2)}$$
 ![Simulación de onda 2D](video3.gif)
